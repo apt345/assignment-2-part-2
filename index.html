@@ -3,29 +3,60 @@
     <head>
         <title>d3.js data driven page</title>
         <script src="https://d3js.org/d3.v6.min.js"></script>
+
+        
     </head>
 
     <body>
         <p>
-            This page is inspired by the 
-            <button onclick="colorP()">Click me</button>
-            <table></table>
+            Choose a file
+            <br>
+            <select name="file" id="file">
+          <option value="data1">data1.csv</option>
+          <option value="data2">data2.csv</option>
+          </select>
+            <br>
+            
+            
+            <table id="table"></table>
 
 
         </p>
 
-        <script>
-            csv_url = "data2.csv"
-            d3.csv(csv_url,
-            (d,i,c) => {
-                if (i>0) return d
-                d3.select("table")
-                .append("tr")
-                .selectAll("td")
-                .data(c).enter()
-                .append("td").text(e => d[e])
-            })
 
+        <script>
+            
+            file.onchange = function(){
+                if(document.getElementById("file").value=="data1"){
+                    var Table = document.getElementById("table");
+                    Table.innerHTML = "";
+                     csv_url = false ? "data1.csv" : "https://raw.githubusercontent.com/apt345/assignment-2-part-2/master/data1.csv"
+                    d3.csv(csv_url,
+                    (d,i,c) => {
+                     if (i>20) return d
+                    d3.select("table")
+                    .append("tr")
+                    .selectAll("td")
+                    .data(c).enter()
+                    .append("td").text(e => d[e])
+                    })
+                }
+                if(document.getElementById("file").value=="data2"){
+                    var Table = document.getElementById("table");
+                    Table.innerHTML = "";
+                     csv_url = false ? "data2.csv" : "https://raw.githubusercontent.com/apt345/assignment-2-part-2/master/data2.csv"
+                    d3.csv(csv_url,
+                    (d,i,c) => {
+                     if (i>30) return d
+                    d3.select("table")
+                    .append("tr")
+                    .selectAll("td")
+                    .data(c).enter()
+                    .append("td").text(e => d[e])
+                    })
+                }
+            };
         </script>
+
     </body>
 </html>
