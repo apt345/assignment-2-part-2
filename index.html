@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>d3.js data driven page</title>
+        <script src="https://d3js.org/d3.v6.min.js"></script>
+    </head>
+
+    <body>
+        <p>
+            This page is inspired by the 
+            <button onclick="colorP()">Click me</button>
+            <table></table>
+
+
+        </p>
+
+        <script>
+            csv_url = "data2.csv"
+            d3.csv(csv_url,
+            (d,i,c) => {
+                if (i>0) return d
+                d3.select("table")
+                .append("tr")
+                .selectAll("td")
+                .data(c).enter()
+                .append("td").text(e => d[e])
+            })
+
+        </script>
+    </body>
+</html>
